@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-client_1",
+      "appliesTo": "client_1.cpp",
+      "type": "launch"
+    }
+  ]
+}
